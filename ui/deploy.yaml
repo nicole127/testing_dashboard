@@ -1,0 +1,3 @@
+attrs:
+  is_background_program: 0
+  after_up: cp -rf /data/release/regression_testing_dashboard_ui/dist/* /usr/share/nginx/html && nginx -s reload

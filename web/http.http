@@ -1,0 +1,110 @@
+### 查询测试计划详情
+GET http://ftest.server.com/api/testplan/2382/
+Cookie: username=autoweb; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc2MjE4NTMsImlhdCI6MTY5NzUzNTQ1MywibmJmIjoxNjk3NTM1NDUzLCJ1c2VybmFtZSI6ImF1dG93ZWIifQ.Y_eCeIkU8GAyEqqkq6YII10bNwuuRLeoqIXXUcq0fu4
+
+### 查询执行结果列表
+GET http://ftest.server.com/api/testplanresults/all?runner=nicolecheng&name=%20MY%E7%BE%8E%E8%82%A1_%E5%BC%80%E5%8F%91%E8%87%AA%E6%B5%8B&start_time=1696089600&finish_time=1698595199&include_rerun=1&limit=20
+Cookie: username=autoweb; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc2MjE4NTMsImlhdCI6MTY5NzUzNTQ1MywibmJmIjoxNjk3NTM1NDUzLCJ1c2VybmFtZSI6ImF1dG93ZWIifQ.Y_eCeIkU8GAyEqqkq6YII10bNwuuRLeoqIXXUcq0fu4
+
+### 查询执行结果详情
+GET http://ftest.server.com/api/testplanresult/5877015
+Cookie: username=autoweb; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc2MjE4NTMsImlhdCI6MTY5NzUzNTQ1MywibmJmIjoxNjk3NTM1NDUzLCJ1c2VybmFtZSI6ImF1dG93ZWIifQ.Y_eCeIkU8GAyEqqkq6YII10bNwuuRLeoqIXXUcq0fu4
+
+### 更新用例失败原因
+PUT http://ftest.server.com/api/casetask/116515498/
+Cookie: username=autoweb; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTc2MjE4NTMsImlhdCI6MTY5NzUzNTQ1MywibmJmIjoxNjk3NTM1NDUzLCJ1c2VybmFtZSI6ImF1dG93ZWIifQ.Y_eCeIkU8GAyEqqkq6YII10bNwuuRLeoqIXXUcq0fu4
+
+
+### query plan list —— 根据plan_id查询测试计划列表
+GET http://127.0.0.1:8000/dashboard/plan?id=2529
+Content-Type: application/json
+
+### query plan list —— 根据负责人查询测试计划列表
+GET http://127.0.0.1:8000/dashboard/plan?person_in_charge=nicolecheng
+Content-Type: application/json
+
+### query plan list —— 根据测试计划名称查询测试计划列表
+GET http://192.168.32.91:8000/dashboard/plan?name__in=MY美股_附加订单3.0
+#GET http://127.0.0.1:8000/dashboard/plan?name__in=MY美股_附加订单3.0
+Content-Type: application/json
+
+### create plan关联测试计划
+POST http://127.0.0.1:8000/dashboard/plan/
+Content-Type: application/json
+
+{
+  "url": "http://ftest.server.com/testplan/form/?id=1738"
+}
+
+
+### 根据测试计划plan_id获取执行记录列表plan_records
+POST http://127.0.0.1:8000/dashboard/planrecord/
+Content-Type: application/json
+Authorization:AU-7sb9lcDsMZXEcDAtuaWNvbGVjaGVuZwlsb2NhbGhvc3QAAAEADtB4inRJ_Cu711Ocnp1yZseaFcBXQEz6Ue3ie3CUQ9fWGgZsJM_HFach4iqen-gLoPwjMaZaqHH05_TGL0Nml1e2LUXqQKUvy2CZSvgkr6CuF8a1z7WEvU_y4VdA3NgXuChuyhLZIMY5wuEtGJBwx6sM6KsBD1LmA2xrsXmAzHwuICel6yX_4PBNscEA18kTGofNWTRA_Xw_OkUk-qI2nEqtI0dN0G6-uc8Hgya-6EEhZX1G42gPZ76SjUXvKMlgrJM9eyGWADeAAjwsR3JZ3HAbcUOKETrQSccVdHyy5-rmnjXgOuEY7iB32URmTEe6jrqVyv19vDvuvjdtKJ4bFA==
+
+{
+  "plan_id": 1738
+}
+
+### 根据plan_record_id获取执行详情
+POST http://127.0.0.1:8000/dashboard/caserecord/
+Content-Type: application/json
+Authorization:AU-7sb9lcDsMZXEcDAtuaWNvbGVjaGVuZwlsb2NhbGhvc3QAAAEADtB4inRJ_Cu711Ocnp1yZseaFcBXQEz6Ue3ie3CUQ9fWGgZsJM_HFach4iqen-gLoPwjMaZaqHH05_TGL0Nml1e2LUXqQKUvy2CZSvgkr6CuF8a1z7WEvU_y4VdA3NgXuChuyhLZIMY5wuEtGJBwx6sM6KsBD1LmA2xrsXmAzHwuICel6yX_4PBNscEA18kTGofNWTRA_Xw_OkUk-qI2nEqtI0dN0G6-uc8Hgya-6EEhZX1G42gPZ76SjUXvKMlgrJM9eyGWADeAAjwsR3JZ3HAbcUOKETrQSccVdHyy5-rmnjXgOuEY7iB32URmTEe6jrqVyv19vDvuvjdtKJ4bFA==
+
+{
+  "plan_record_id": 	6083128
+}
+
+### 根据plan_record_id获取失败用例：筛选项-成功/失败、负责人、失败类型
+GET http://127.0.0.1:8000/dashboard/caserecord?plan_record_id=6005295&is_success=False&person_in_charge=nicolecheng&fail_type=3
+Content-Type: application/json
+
+
+### 批量更新用例失败原因
+PUT http://127.0.0.1:8000/dashboard/caserecord/1/
+Content-Type: application/json
+
+{
+  "case_record_ids": "123315078",
+  "fail_type": 3,
+  "fail_reason": "市价单不能下100股"
+}
+
+
+### 查询看板数据 —— 筛选测试计划+时间范围
+GET http://localhost:8000/dashboard/board?plan_ids[]=2529&start_time=2023-11-01&end_time=2023-11-30
+Content-Type: application/json
+
+### 查询看板数据 —— 默认展示 —— 用户有数据
+GET http://127.0.0.1:8000/dashboard/board?user=nicolecheng&start_time=2023-07-01&end_time=2023-12-30
+Content-Type: application/json
+
+### 查询看板数据 —— 默认展示 —— 用户无数据
+GET http://127.0.0.1:8000/dashboard/board?user=ted&start_time=2023-07-01&end_time=2023-12-30
+Content-Type: application/json
+
+
+### 获取所有测试计划名称
+GET http://127.0.0.1:8000/dashboard/plannames/
+Content-Type: application/json
+
+### 获取所有用户-有测试计划/执行记录的
+GET http://127.0.0.1:8000/dashboard/users/
+Content-Type: application/json
+Authorization:AeGSo3lld9eQZXi4kAtuaWNvbGVjaGVuZwlsb2NhbGhvc3QAAAEARkf_IUZBHtRWwHeD9aYfi70ET7Uqv1569i6m9VMsn4OWtxq2Xiqpa_rJiCiPgVU1gvPO4hWREImcRlLx2Q8g6dcTfPq-EYKWrH2XcHTJ6sBUe1W4rM1on6mA3UY4jKYOcuqC3C8TCD2RYYLM9Pf4FUWJLbidpcKkRqG9qiUg4rCqkNnVhBEJ6ZaATLLFmDCKaemO5CwzQ2Ta-MSVhXDfs7MKBRcfvJd9i1-yp4B1elV1XQjlqr4j9z_St-sUV3J2bUqO2iCNWttN6g2r-qbB5oWyjeDC2ZF0ZaPWfi89T_vnO-Q96qkYrMPKnY12AYZ1XWrM2sUp_G97gOjZe-Aigg==
+
+### 查询login
+GET http://192.168.32.91:8000/dashboard/login?username=nicolecheng&token=123abc
+Content-Type: application/json
+
+### 获取所有小组名称
+GET http://127.0.0.1:8000/dashboard/groupnames/
+Content-Type: application/json
+Authorization:AQIUbqplel0BZXs-AQtuaWNvbGVjaGVuZw4xNzIuMTguMTQ1LjE1MwAAAQAUT7V0-ypfvvVVPg70PkrCif2kuPM4KdJTBqf_r0aYBiXh0mpKrXpmmT5pT9o-Ax8bToGWAvmEkieZmgiBlDRgUyt8x3umzZwDnuTRwTd1NxNIEwiZ9-JeHRSc6qHS2A2JgS_HXy-Ut3Sg7gDyG8SzJY3ahJwdfVdLJDwFQN_D7saKjerqJbliulhy2Wzmr20gaBuGb3utmu7SMJteRrk4wCcrO9I4I9sziNhv0TT4GJMe5yzgSNZ8mG6wc0TmqueDPjD1wBZxtaYTVODdEHxo7to3rkwpIj88iKHjUPpbdXYS_nIIdseCzwENJIlw4sIhseaACMAxqvzAW6y_ZQ0p
+
+
+### 更新所有数据
+POST http://172.18.145.153:8000/dashboard/syncftest/
+Content-Type: application/json
+Authorization:AQIUbqplel0BZXs-AQtuaWNvbGVjaGVuZw4xNzIuMTguMTQ1LjE1MwAAAQAUT7V0-ypfvvVVPg70PkrCif2kuPM4KdJTBqf_r0aYBiXh0mpKrXpmmT5pT9o-Ax8bToGWAvmEkieZmgiBlDRgUyt8x3umzZwDnuTRwTd1NxNIEwiZ9-JeHRSc6qHS2A2JgS_HXy-Ut3Sg7gDyG8SzJY3ahJwdfVdLJDwFQN_D7saKjerqJbliulhy2Wzmr20gaBuGb3utmu7SMJteRrk4wCcrO9I4I9sziNhv0TT4GJMe5yzgSNZ8mG6wc0TmqueDPjD1wBZxtaYTVODdEHxo7to3rkwpIj88iKHjUPpbdXYS_nIIdseCzwENJIlw4sIhseaACMAxqvzAW6y_ZQ0p
+

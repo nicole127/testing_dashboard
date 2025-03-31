@@ -1,0 +1,47 @@
+attrs:
+  is_background_program: 0
+  python_version: 3.8.13
+crontabs: |-
+  #PYENV_PATH/bin/python
+  1 5 * * * #PYENV_PATH/bin/python #INSTALL_PATH/manage.py sync >> #INSTALL_PATH/logs/sync.log 2>&1
+foreground_program:
+- program_name: regression_test
+  supervisor_conf: |
+    program_name=regression_test
+    command=#PYENV_PATH/bin/uwsgi --ini uwsgi.ini
+    stopsignal=TERM
+    directory=/data/release/regression_test
+    numprocs=1
+    process_name=%(program_name)s
+    startsecs=10
+    startretries=1
+    autorestart=true
+    exitcodes=0,2
+    stopwaitsecs=45
+    environment=LANG="en_US.UTF-8",LC_ALL="en_US.UTF-8"
+    stopasgroup=true
+    killasgroup=true
+    user = ops
+    ;umask = 022
+    ;priority = 999
+    autostart = false
+    ;redirect_stderr = false
+    stdout_logfile = /data/log/#PKG_NAME/%(program_name)s_stdout.log
+    stdout_logfile_maxbytes = 100MB
+    stdout_logfile_backups = 10
+    ;stdout_capture_maxbytes = 1MB
+    stdout_events_enabled = false
+    stderr_logfile = /data/log/#PKG_NAME/%(program_name)s_stderr.log
+    stderr_logfile_maxbytes = 100MB
+    stderr_logfile_backups = 10
+    stderr_capture_maxbytes = 1MB
+    ;stderr_events_enabled = false
+    ;serverurl = AUTO
+liveness:
+- failure_action: alert
+  initial_delay_seconds: 8
+  is_enabled: true
+  liveness_type: tcp
+  probe_type: startup
+  tcp_port: 8000
+  timeout_seconds: 3
